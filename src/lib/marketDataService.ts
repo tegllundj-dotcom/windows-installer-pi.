@@ -160,22 +160,25 @@ class MarketDataService {
     
     // Send initial data if available
     switch (type) {
-      case 'price':
+      case 'price': {
         const priceData = this.priceData.get(symbol)
         if (priceData) {
           callback(priceData)
         }
         break
-      case 'indicators':
+      }
+      case 'indicators': {
         const indicators = this.calculateTechnicalIndicators(symbol)
         if (indicators) {
           callback(indicators)
         }
         break
-      case 'orderbook':
+      }
+      case 'orderbook': {
         const orderbook = this.generateOrderBook(symbol)
         callback(orderbook)
         break
+      }
       case 'trades':
         // Will be sent as new trades occur
         break

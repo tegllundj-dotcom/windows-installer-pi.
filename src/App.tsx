@@ -2,8 +2,10 @@ import { Toaster } from "@/components/ui/sonner"
 import { useKV } from '@github/spark/hooks'
 import { useEffect } from 'react'
 import { TradingDashboard } from '@/components/TradingDashboard'
+import { DebugPanel } from '@/components/DebugPanel'
 import { generateMockData, generateMockOrders, type Portfolio, type Trade, type Position, type Order } from '@/lib/mockData'
 import { initializeRealTimeDemo } from '@/lib/demoInit'
+import { debugManager } from '@/lib/debugUtils'
 
 function App() {
   const [portfolioData, setPortfolioData] = useKV<Portfolio | null>("portfolio-data", null)
@@ -51,6 +53,7 @@ function App() {
         onUpdateOrders={setOrders}
       />
       <Toaster position="top-right" />
+      {import.meta.env.DEV && <DebugPanel />}
     </>
   )
 }
